@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"
+    integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+    crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quintessential&family=Rye&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet">  <title>Weather App </title>
+<style>
+  .class{
+    font-family: 'Quintessential', serif;
+  }
+</style>  
+  
+</head>
+
+<body style="background-color: #F5F5F5" class="card">
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" >
+    <div class="container">
+      <a href="../" class="navbar-brand">Weather App <span style="color: rgb(39, 117, 161);"> <strong> - Django
+          Framework</strong>
+        </span> </a>
+      <form method="post" class="col-md-4 justify-content-end">
+        {% csrf_token %}
+        <div class="input-group">
+          <input type="text" class="form-control" name="city" placeholder="Choose Your City ...">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <br /><br /> <br>
+  <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top:-50px; background-color: #E0E0E0; border: 2px solid #cccccc; font-family: 'Rye', serif;">
+    <h1 class="display-5">Welcome To My WeatherApp</h1>
+
+    <img src="{% static 'images/1.png' %}" class="image" style="width: 200px; margin-bottom:-50px; ">
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">  </nav>
+  <br> <br>
+  <div class="row">
+    {% if country_code and coordinate and temp and pressure and humidity %}
+    <div class="col-md-12 d-flex justify-content-center">
+      <div class="card text-white bg-light mb-6 hidden" style="border: 1px solid #ddd; font-family: 'Quintessential', serif;">
+        <div class="card-body">
+          <h4><span class="badge badge-primary">Country Code :</span> {{ country_code }}</h4>
+          <h4><span class="badge badge-primary">Coordinates [X,Y] :</span> {{ coordinate }}</h4>
+          <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{ temp }}</h4>
+          <h4><span class="badge badge-primary">Pressure :</span> {{ pressure }} </h4>
+          <h4><span class="badge badge-primary">Humidity : </span> {{ humidity }}</h4>
+          <h4><span class="badge badge-primary">Forecast : </span> {{ main }} <img
+              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Description : </span> {{ description }}</h4>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+
+</html>
